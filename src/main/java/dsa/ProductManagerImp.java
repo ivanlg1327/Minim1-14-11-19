@@ -2,6 +2,7 @@ package dsa;
 
 import dsa.models.Order;
 import dsa.models.User;
+import dsa.models.Product;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
