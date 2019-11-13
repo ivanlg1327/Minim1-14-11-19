@@ -47,7 +47,7 @@ public class Order {
         return this.name;
     }
 
-   public class LP {
+    public class LP {
         public int q;
         public String product;
 
