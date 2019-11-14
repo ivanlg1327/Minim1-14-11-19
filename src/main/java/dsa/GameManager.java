@@ -20,5 +20,5 @@ public interface GameManager {
     public Objeto getObjeto(String p);//get
 
     public List<User> listUser();// Listado de pedidos de un usuario que ya hayan sido realizados
-    public HashMap<String, User> listUsers();// Listado de productos ordenado (descendentemente) por número de ventas
+    public HashMap<String, User> hashUsers();// Listado de productos ordenado (descendentemente) por número de ventas
 }

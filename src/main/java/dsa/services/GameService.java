@@ -51,9 +51,8 @@ public class GameService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
 
-        HashMap<String, User> users = this.tm.listUsers();
-        List<User> list = new LinkedList<>();
-        users.values().forEach(list::add);
+        List<User> list = this.tm.listUser();
+
         GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) {};
         return Response.status(201).entity(entity).build() ;
 
@@ -65,7 +64,7 @@ public class GameService {
     })
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProducts(@PathParam("id") String id) {
+    public Response getObjects(@PathParam("id") String id) {
 
         List<Objeto> objetos = this.tm.getUserBag(id);
 
@@ -75,15 +74,15 @@ public class GameService {
     }
 
     @GET
-    @ApiOperation(value = "get a Product", notes = "We look for an specific product")
+    @ApiOperation(value = "get a User", notes = "We look for an specific product")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Objeto.class),
+            @ApiResponse(code = 201, message = "Successful", response = User.class),
             @ApiResponse(code = 404, message = "Product not found")
     })
-    @Path("/")
+    @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProduct( String id) {
-        List<Objeto> t = this.tm.getUserBag(id);
+    public Response getUser(@PathParam("id") String id) {
+        User t = this.tm.getUser(id);
         if (t == null) return Response.status(404).build();
         else  return Response.status(201).entity(t).build();
     }
@@ -103,10 +102,10 @@ public class GameService {
     }*/
 
     @PUT
-    @ApiOperation(value = "update a Product", notes = "We have a new offer")
+    @ApiOperation(value = "update a User", notes = "Something")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
-            @ApiResponse(code = 404, message = "Product not found")
+            @ApiResponse(code = 404, message = "User not found")
     })
     @Path("/")
     public Response updateProduct(User user) {
@@ -121,7 +120,7 @@ public class GameService {
 
 
     @POST
-    @ApiOperation(value = "create a new Product", notes = "We have a brand new product")
+    @ApiOperation(value = "create a new User", notes = "We have a brand new User")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response=User.class),
             @ApiResponse(code = 500, message = "Validation Error")
@@ -130,10 +129,26 @@ public class GameService {
 
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response newProduct(User user) {
+    public Response newUser(User user) {
 
         if (user.getName()==null || user.getId()==null)  return Response.status(500).entity(user).build();
         this.tm.addUser(user.id,user.name, user.surname1, user.surname2);
+        return Response.status(201).entity(user).build();
+    }
+    @POST
+    @ApiOperation(value = "create a new Object", notes = "We have a brand new object")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response=User.class),
+            @ApiResponse(code = 500, message = "Validation Error")
+
+    })
+
+    @Path("/user/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addObject(@PathParam("id")String id, Objeto object) {
+
+        User user=this.tm.getUser(id);
+        user.addBag(object);
         return Response.status(201).entity(user).build();
     }
 

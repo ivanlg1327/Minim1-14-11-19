@@ -23,6 +23,7 @@ public class GameManagerTest {
 
         Objeto p= new Objeto("Espasa", 2,"afilada");
         this.pm.addUserBag("11111", p);
+        this.pm.size();
     }
 
     @After
@@ -32,7 +33,8 @@ public class GameManagerTest {
 
     @Test
     public void testing() {
-       // this.pm.listUser();//algo falla mirar despues
+        this.pm.listUser();//algo falla mirar despues
+
 
     }
 

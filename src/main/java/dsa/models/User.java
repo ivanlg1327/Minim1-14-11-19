@@ -3,7 +3,7 @@ package dsa.models;
 import java.util.LinkedList;
 import java.util.List;
 
-public class User {
+public class User implements Comparable<User>{
     public String name;
     public String surname1;
     public String surname2;
@@ -16,6 +16,9 @@ public class User {
         this.surname2 = surname2;
         this.bag = new LinkedList<>();
         this.id= id;
+    }
+    public User(){
+
     }
 
     public String getId() {
@@ -50,9 +53,6 @@ public class User {
         return bag;
     }
 
-    public void setBag(List<Objeto> bag) {
-        this.bag = bag;
-    }
 
     public void addBag(Objeto objeto)
     {

@@ -26,25 +26,26 @@ public class GameManagerImp implements GameManager {
         return instance;
     }
 
-    public GameManagerImp() {// List<dsa.models.Product> productList, HashMap<String, dsa.models.User> users,Queue<dsa.models.Order> orderQueue) {
+    public GameManagerImp() {
         this.objetoList = new LinkedList<Objeto>();
         this.users = new HashMap<>();
         this.orderQueue= new LinkedList<>();
     }
     @Override
     public int size(){
-        int aux=this.objetoList.size();
+        int aux=this.users.size();
+        log.info(aux);
         return aux;
     }
     @Override
     public void addUser(String id, String name, String surname1, String surname2){
-        User result=users.get(id);
+        User result=this.users.get(id);
         log.info(result);//debe aparecer vacio si no esta en la lista
         User aux;
         if (result==null)
         {
             aux=new User(name, id, surname1,surname2);
-            users.put(id,aux);
+            this.users.put(id,aux);
             log.info("The user "+ aux.name+ " "+aux.surname1+" "+ aux.surname2+" with id '"+aux.id+ "' has been added to the system");
         }
         else
@@ -52,12 +53,7 @@ public class GameManagerImp implements GameManager {
             log.warn("The user " + name +" "+ surname1+ " " +surname2+ " already exists" );
         }
     }
-   /* @Override
-    public void addProduct(String name, String description,double price ){//cambiar
-        Objeto temp = new Objeto(name, price,0, description);
-        this.objetoList.add(temp);//entra en bucle entre esta linea y el producto
-        log.info(this.objetoList);
-    }*/
+
     @Override
     public User updateUser(User p){
         User t = this.users.get(p.getId());
@@ -113,19 +109,14 @@ public class GameManagerImp implements GameManager {
 
     @Override
     public List<User> listUser() {
-        Map map = new HashMap();
-       map= listUsers();
-        Iterator entries = map.entrySet().iterator();
-        List <User> aux=new LinkedList<>();
-        while (entries.hasNext()) {
-
-        }
-        log.info("");
-        return null;
+        List<User> userList = new LinkedList<User>(this.hashUsers().values());
+        Collections.sort(userList);
+        log.info(userList);
+        return userList;
     }
 
     @Override
-    public HashMap<String, User> listUsers() {
+    public HashMap<String, User> hashUsers() {
 
         return this.users;
     }
