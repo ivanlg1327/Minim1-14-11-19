@@ -113,12 +113,20 @@ public class GameManagerImp implements GameManager {
 
     @Override
     public List<User> listUser() {
-        log.info((List<User>) this.listUsers().values());
-        return (List<User>) this.listUsers().values();
+        Map map = new HashMap();
+       map= listUsers();
+        Iterator entries = map.entrySet().iterator();
+        List <User> aux=new LinkedList<>();
+        while (entries.hasNext()) {
+
+        }
+        log.info("");
+        return null;
     }
 
     @Override
     public HashMap<String, User> listUsers() {
+
         return this.users;
     }
 
