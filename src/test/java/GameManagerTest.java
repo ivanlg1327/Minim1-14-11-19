@@ -41,7 +41,7 @@ public class GameManagerTest {
     @Test
     public void verUsuario() {
         Assert.assertEquals("Ver usuario","Ivan",this.pm.getUser("22222").name);
-       // Assert.assertEquals("Ver usuario","Espasa",this.pm.getUser("11111").getBag().get(0));
+        Assert.assertEquals("Ver usuario",1,this.pm.getUser("11111").getBag().size());
 
     }
 
