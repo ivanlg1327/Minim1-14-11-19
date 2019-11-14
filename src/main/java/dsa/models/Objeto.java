@@ -2,7 +2,6 @@ package dsa.models;
 
 public class Objeto implements Comparable<Objeto>{
     public String name;
-    public double price;// este se borra
     public int count;
     public String description;
 
@@ -20,9 +19,7 @@ public class Objeto implements Comparable<Objeto>{
         this.name = name;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+
 
     public void setCount(int count) {
         this.count = count;
@@ -32,9 +29,6 @@ public class Objeto implements Comparable<Objeto>{
         return name;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
     public int getCount() {
         return count;

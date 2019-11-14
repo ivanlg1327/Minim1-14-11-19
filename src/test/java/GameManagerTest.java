@@ -19,14 +19,10 @@ public class GameManagerTest {
         this.pm = GameManagerImp.getInstance();
         this.pm.addUser("11111", "Toni", "Oller", "Arcas");
         this.pm.addUser("22222", "Ivan", "Luque", "Garcia");
-      //  this.pm.addProduct("COCA-ZERO", "coca cola cero",4.5);
-        //this.pm.addProduct("BOCATA", "Bocata jampn",2);
-        Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
+
+
         Objeto p= new Objeto("Espasa", 2,"afilada");
-       /* Order p = new Order( "11111", date);  //sobraria el nombre pero deberia funcionar
-        p.addLP(2, "COCA-ZERO");
-        p.addLP(1, "BOCATA");
-        this.pm.ped(p);*/
+        this.pm.addUserBag("11111", p);
     }
 
     @After
@@ -36,21 +32,18 @@ public class GameManagerTest {
 
     @Test
     public void testing() {
-        this.pm.listPrices();//algo falla mirar despues
+       // this.pm.listUser();//algo falla mirar despues
 
     }
 
     @Test
-    public void anotarPedido() {
-        Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-        Order p = new Order("Toni", date); //, users.get("11111"));
-        p.addLP(1, "COCA-ZERO");
-        p.addLP(3, "BOCATA");
-        p.addUSer("22222");
-        this.pm.ped(p);
+    public void verUsuario() {
+        Assert.assertEquals("Ver usuario","Ivan",this.pm.getUser("22222").name);
+       // Assert.assertEquals("Ver usuario","Espasa",this.pm.getUser("11111").getBag().get(0));
+
     }
 
-    @Test
+  /*  @Test
     public void servirPedido() {
         Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
         Order p = new Order("22222", date); //, users.get("11111"));
@@ -84,5 +77,5 @@ public class GameManagerTest {
         Assert.assertEquals("ServirPEdido", 4, this.pm.getProduct("BOCATA").getCount());
         Assert.assertEquals("ServirPEdido", 3, this.pm.getProduct("COCA-ZERO").getCount());
         //comprobar despues de segunda comanda
-    }
+    }*/
 }

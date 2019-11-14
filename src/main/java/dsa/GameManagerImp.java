@@ -76,47 +76,9 @@ public class GameManagerImp implements GameManager {
 
         return t;
     }
-    @Override
-    public List<Objeto> listPrices()//seguramente desaparecera
-    {
-        Collections.sort(this.objetoList, new Comparator<Objeto>() {
-            @Override
-            public int compare(Objeto product, Objeto t1) {
-                return ((int)(product.price-t1.price));
-            }
-        });
-        log.info(this.objetoList);
-        return this.objetoList;
-    }
 
     @Override
-    public void ped(Order order) {
-        this.orderQueue.add(order);
-    }
-
-    @Override
-    public Order listActive() {
-        Order aux=this.orderQueue.poll();
-        log.info(aux);
-        User user = users.get(aux.getUser());
-        int q;
-        String p;
-        Objeto product;
-        for (Order.LP lp: aux.lps()) {
-            q = lp.q;
-            p = lp.product;
-            product = this.getProduct(p);
-            product.numVendes(q);
-        }
-        if (user!=null) {
-            user.addHistorical(aux);
-        }
-        else log.error("user no exiteix"+user);
-
-        return aux;
-    }
-    @Override
-    public Objeto getProduct(String p) {
+    public Objeto getObjeto(String p) {
         for (Objeto objeto : this.objetoList) {
             if (objeto.name.equals(p)) return objeto;
         }
@@ -141,16 +103,6 @@ public class GameManagerImp implements GameManager {
     }
 
     @Override
-    public void deleteProduct(String name){
-        Objeto t = this.getProduct(name);
-        if (t==null) {
-            log.warn("not found " + t);
-        }
-        else log.info(t+" deleted ");
-
-        this.objetoList.remove(t);
-    }
-    @Override
     public void clear(){
         instance = null;
         this.objetoList.clear();
@@ -160,8 +112,9 @@ public class GameManagerImp implements GameManager {
 
 
     @Override
-    public List<Order> listUser(String idUser) {
-        return null;
+    public List<User> listUser() {
+        log.info((List<User>) this.listUsers().values());
+        return (List<User>) this.listUsers().values();
     }
 
     @Override

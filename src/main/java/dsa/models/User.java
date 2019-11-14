@@ -15,7 +15,6 @@ public class User {
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
-        this.historical = new LinkedList<>();//borrar
         this.bag = new LinkedList<>();
         this.id= id;
     }
@@ -56,13 +55,12 @@ public class User {
         this.bag = bag;
     }
 
-    public void addHistorical(Order order)//borrar
-    {
-        this.historical.add(order);
-    }
     public void addBag(Objeto objeto)
     {
         this.bag.add(objeto);
+    }
+    public int compareTo(User e2) {
+        return this.name.compareTo(e2.name);
     }
     public String toString() {
         return this.name;
