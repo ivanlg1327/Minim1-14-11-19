@@ -23,6 +23,8 @@ import java.util.List;
 
 @Api(value = "/objetos", description = "Endpoint to Product Service")
 @Path("/objetos")
+
+
 public class GameService {
 
 
@@ -45,16 +47,15 @@ public class GameService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = User.class, responseContainer="List"),
     })
-    @Path("/")
+    @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
 
         HashMap<String, User> users = this.tm.listUsers();
-
         List<User> list = new LinkedList<>();
         users.values().forEach(list::add);
-       GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) {};
-       return Response.status(201).entity(entity).build() ;
+        GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) {};
+        return Response.status(201).entity(entity).build() ;
 
     }
     @GET
