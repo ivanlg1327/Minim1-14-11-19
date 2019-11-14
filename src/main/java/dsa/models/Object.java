@@ -1,16 +1,16 @@
 package dsa.models;
 
-public class Product implements Comparable<Product>{
+public class Object implements Comparable<Object>{
     public String name;
-    public double price;
+    public double price;// este se borra
     public int count;
     public String description;
 
-    public Product() {//necesario para que la api rest funcione
+    public Object() {//necesario para que la api rest funcione
 
     }
 
-    public Product(String name, double price, int count, String description) {
+    public Object(String name, double price, int count, String description) {
         this.name = name;
         this.price = price;
         this.count = count;
@@ -41,7 +41,7 @@ public class Product implements Comparable<Product>{
     }
 
     @Override
-    public int compareTo(Product e2) {
+    public int compareTo(Object e2) {
         return this.name.compareTo(e2.name);
     }
     public String toString() {

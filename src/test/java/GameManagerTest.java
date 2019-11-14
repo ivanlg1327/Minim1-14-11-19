@@ -1,6 +1,6 @@
 import dsa.models.Order;
-import dsa.ProductManager;
-import dsa.ProductManagerImp;
+import dsa.GameManager;
+import dsa.GameManagerImp;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,12 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class ProductManagerTest {
-    private ProductManager pm = null;
+public class GameManagerTest {
+    private GameManager pm = null;
 
     @Before
     public void setUp() {
-        this.pm = ProductManagerImp.getInstance();
+        this.pm = GameManagerImp.getInstance();
         this.pm.addUser("11111", "Toni");
         this.pm.addUser("22222", "Ivan");
         this.pm.addProduct("COCA-ZERO", "coca cola cero",4.5);

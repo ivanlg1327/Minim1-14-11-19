@@ -1,8 +1,8 @@
 package dsa.services;
 
 import dsa.models.Product;
-import dsa.ProductManager;
-import dsa.ProductManagerImp;
+import dsa.GameManager;
+import dsa.GameManagerImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,10 +22,10 @@ import java.util.List;
 public class ProductService {
 
 
-    private ProductManager tm;
+    private GameManager tm;
 
     public ProductService() {
-        this.tm = ProductManagerImp.getInstance();
+        this.tm = GameManagerImp.getInstance();
         if (tm.size()==0) {
             this.tm.addProduct("La Barbacoa", "Georgie Dann", 3);
             this.tm.addProduct("Despacito", "Basura", 2);
