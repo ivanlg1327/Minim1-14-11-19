@@ -8,7 +8,6 @@ public class User {
     public String surname1;
     public String surname2;
     public String id;
-    List<Order> historical;//borrar
     List<Objeto> bag;
 
     public User(String name, String id,  String surname1,  String surname2) {
