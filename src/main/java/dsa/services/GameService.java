@@ -74,7 +74,7 @@ public class GameService {
     }
 
     @GET
-    @ApiOperation(value = "get a User", notes = "We look for an specific product")
+    @ApiOperation(value = "get a User", notes = "We look for an specific user")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = User.class),
             @ApiResponse(code = 404, message = "Product not found")

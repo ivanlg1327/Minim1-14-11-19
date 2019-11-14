@@ -1,6 +1,5 @@
 package dsa;
 
-import dsa.models.Order;
 import dsa.models.User;
 import dsa.models.Objeto;
 import org.apache.log4j.LogManager;
@@ -12,7 +11,7 @@ import java.util.*;
 public class GameManagerImp implements GameManager {
     private Logger log = LogManager.getLogger(GameManagerImp.class);
     private List<Objeto> objetoList;
-    private Queue<Order> orderQueue ;
+
     private HashMap<String, User> users;
 
     private static GameManagerImp instance = new GameManagerImp();
@@ -29,7 +28,7 @@ public class GameManagerImp implements GameManager {
     public GameManagerImp() {
         this.objetoList = new LinkedList<Objeto>();
         this.users = new HashMap<>();
-        this.orderQueue= new LinkedList<>();
+
     }
     @Override
     public int size(){
@@ -76,12 +75,17 @@ public class GameManagerImp implements GameManager {
     @Override
     public Objeto getObjeto(String p) {
         for (Objeto objeto : this.objetoList) {
-            if (objeto.name.equals(p)) return objeto;
+            if (objeto.name.equals(p)) {
+                log.info(objeto);
+                return objeto;
+            }
         }
+        log.error("this object does not exist");
         return null;
     }
     @Override
     public User getUser(String p){
+        log.info(users.get(p));
         return users.get(p);
     }
     @Override
@@ -102,7 +106,6 @@ public class GameManagerImp implements GameManager {
     public void clear(){
         instance = null;
         this.objetoList.clear();
-        this.orderQueue.clear();
         users.clear();
     }
 
@@ -117,7 +120,7 @@ public class GameManagerImp implements GameManager {
 
     @Override
     public HashMap<String, User> hashUsers() {
-
+        log.info(this.users);
         return this.users;
     }
 

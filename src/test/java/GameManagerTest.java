@@ -1,15 +1,10 @@
 import dsa.GameManager;
 import dsa.GameManagerImp;
 import dsa.models.Objeto;
-import dsa.models.Order;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class GameManagerTest {
     private GameManager pm = null;
@@ -34,8 +29,6 @@ public class GameManagerTest {
     @Test
     public void testing() {
         this.pm.listUser();//algo falla mirar despues
-
-
     }
 
     @Test
