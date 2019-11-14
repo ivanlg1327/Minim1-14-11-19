@@ -1,6 +1,7 @@
-import dsa.models.Order;
 import dsa.GameManager;
 import dsa.GameManagerImp;
+import dsa.models.Objeto;
+import dsa.models.Order;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,15 +17,16 @@ public class GameManagerTest {
     @Before
     public void setUp() {
         this.pm = GameManagerImp.getInstance();
-        this.pm.addUser("11111", "Toni");
-        this.pm.addUser("22222", "Ivan");
-        this.pm.addProduct("COCA-ZERO", "coca cola cero",4.5);
-        this.pm.addProduct("BOCATA", "Bocata jampn",2);
+        this.pm.addUser("11111", "Toni", "Oller", "Arcas");
+        this.pm.addUser("22222", "Ivan", "Luque", "Garcia");
+      //  this.pm.addProduct("COCA-ZERO", "coca cola cero",4.5);
+        //this.pm.addProduct("BOCATA", "Bocata jampn",2);
         Date date = new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime();
-        Order p = new Order( "11111", date);  //sobraria el nombre pero deberia funcionar
+        Objeto p= new Objeto("Espasa", 2,"afilada");
+       /* Order p = new Order( "11111", date);  //sobraria el nombre pero deberia funcionar
         p.addLP(2, "COCA-ZERO");
         p.addLP(1, "BOCATA");
-        this.pm.ped(p);
+        this.pm.ped(p);*/
     }
 
     @After

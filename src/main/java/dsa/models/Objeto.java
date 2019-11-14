@@ -1,18 +1,18 @@
 package dsa.models;
 
-public class Object implements Comparable<Object>{
+public class Objeto implements Comparable<Objeto>{
     public String name;
     public double price;// este se borra
     public int count;
     public String description;
 
-    public Object() {//necesario para que la api rest funcione
+    public Objeto() {//necesario para que la api rest funcione
 
     }
 
-    public Object(String name, double price, int count, String description) {
+    public Objeto(String name, int count, String description) {
         this.name = name;
-        this.price = price;
+        //this.price = price;
         this.count = count;
         this.description = description;
     }
@@ -41,7 +41,7 @@ public class Object implements Comparable<Object>{
     }
 
     @Override
-    public int compareTo(Object e2) {
+    public int compareTo(Objeto e2) {
         return this.name.compareTo(e2.name);
     }
     public String toString() {

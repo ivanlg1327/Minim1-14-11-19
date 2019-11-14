@@ -2,7 +2,7 @@ package dsa;
 
 import dsa.models.Order;
 import dsa.models.User;
-import dsa.models.Object;
+import dsa.models.Objeto;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -11,7 +11,7 @@ import java.util.*;
 
 public class GameManagerImp implements GameManager {
     private Logger log = LogManager.getLogger(GameManagerImp.class);
-    private List<Object> objectList;
+    private List<Objeto> objetoList;
     private Queue<Order> orderQueue ;
     private HashMap<String, User> users;
 
@@ -27,13 +27,13 @@ public class GameManagerImp implements GameManager {
     }
 
     public GameManagerImp() {// List<dsa.models.Product> productList, HashMap<String, dsa.models.User> users,Queue<dsa.models.Order> orderQueue) {
-        this.objectList = new LinkedList<Object>();
+        this.objetoList = new LinkedList<Objeto>();
         this.users = new HashMap<>();
         this.orderQueue= new LinkedList<>();
     }
     @Override
     public int size(){
-        int aux=this.objectList.size();
+        int aux=this.objetoList.size();
         return aux;
     }
     @Override
@@ -52,12 +52,12 @@ public class GameManagerImp implements GameManager {
             log.warn("The user " + name +" "+ surname1+ " " +surname2+ " already exists" );
         }
     }
-    @Override
+   /* @Override
     public void addProduct(String name, String description,double price ){//cambiar
-        Object temp = new Object(name, price,0, description);
-        this.objectList.add(temp);//entra en bucle entre esta linea y el producto
-        log.info(this.objectList);
-    }
+        Objeto temp = new Objeto(name, price,0, description);
+        this.objetoList.add(temp);//entra en bucle entre esta linea y el producto
+        log.info(this.objetoList);
+    }*/
     @Override
     public User updateUser(User p){
         User t = this.users.get(p.getId());
@@ -77,16 +77,16 @@ public class GameManagerImp implements GameManager {
         return t;
     }
     @Override
-    public List<Object> listPrices()//seguramente desaparecera
+    public List<Objeto> listPrices()//seguramente desaparecera
     {
-        Collections.sort(this.objectList, new Comparator<Object>() {
+        Collections.sort(this.objetoList, new Comparator<Objeto>() {
             @Override
-            public int compare(Object product, Object t1) {
+            public int compare(Objeto product, Objeto t1) {
                 return ((int)(product.price-t1.price));
             }
         });
-        log.info(this.objectList);
-        return this.objectList;
+        log.info(this.objetoList);
+        return this.objetoList;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class GameManagerImp implements GameManager {
         User user = users.get(aux.getUser());
         int q;
         String p;
-        Object product;
+        Objeto product;
         for (Order.LP lp: aux.lps()) {
             q = lp.q;
             p = lp.product;
@@ -116,9 +116,9 @@ public class GameManagerImp implements GameManager {
         return aux;
     }
     @Override
-    public Object getProduct(String p) {
-        for (Object object : this.objectList) {
-            if (object.name.equals(p)) return object;
+    public Objeto getProduct(String p) {
+        for (Objeto objeto : this.objetoList) {
+            if (objeto.name.equals(p)) return objeto;
         }
         return null;
     }
@@ -127,33 +127,33 @@ public class GameManagerImp implements GameManager {
         return users.get(p);
     }
     @Override
-    public List<Object> getUserBag(String p){
+    public List<Objeto> getUserBag(String p){
         User aux=users.get(p);
         log.info(aux.getBag());
         return aux.getBag();
 
     }
     @Override
-    public void addUserBag(String userId, Object object){
+    public void addUserBag(String userId, Objeto objeto){
         User aux=users.get(userId);
-        aux.addBag(object);
+        aux.addBag(objeto);
         log.info(aux.getBag());
     }
 
     @Override
     public void deleteProduct(String name){
-        Object t = this.getProduct(name);
+        Objeto t = this.getProduct(name);
         if (t==null) {
             log.warn("not found " + t);
         }
         else log.info(t+" deleted ");
 
-        this.objectList.remove(t);
+        this.objetoList.remove(t);
     }
     @Override
     public void clear(){
         instance = null;
-        this.objectList.clear();
+        this.objetoList.clear();
         this.orderQueue.clear();
         users.clear();
     }

@@ -9,7 +9,7 @@ public class User {
     public String surname2;
     public String id;
     List<Order> historical;//borrar
-    List<Object> bag;
+    List<Objeto> bag;
 
     public User(String name, String id,  String surname1,  String surname2) {
         this.name = name;
@@ -48,11 +48,11 @@ public class User {
         this.surname2 = surname2;
     }
 
-    public List<Object> getBag() {
+    public List<Objeto> getBag() {
         return bag;
     }
 
-    public void setBag(List<Object> bag) {
+    public void setBag(List<Objeto> bag) {
         this.bag = bag;
     }
 
@@ -60,9 +60,9 @@ public class User {
     {
         this.historical.add(order);
     }
-    public void addBag(Object object)
+    public void addBag(Objeto objeto)
     {
-        this.bag.add(object);
+        this.bag.add(objeto);
     }
     public String toString() {
         return this.name;
